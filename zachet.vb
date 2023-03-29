@@ -6,7 +6,7 @@ Module zachet
     Dim x As Integer, y As Integer, x1 As Integer, y1 As Integer
     Sub Main(args As String())
 
-        Console.WriteLine("1 - гор. линия, 2 - верт. линия, 3 - прямоугольник, 4 - пуст.прямоугольник, 5 - сетка, 6-орнамент,7-линии,8-цветной орнамент")
+        Console.WriteLine("1 - гор. линия, 2 - верт. линия, 3 - прямоугольник, 4 - пуст.прямоугольник, 5 - сетка, 6-орнамент,7-линии,8-цветной орнамент 9-шахматы")
         num01 = Console.ReadLine
 
 
@@ -42,6 +42,10 @@ Module zachet
             Case 8
 
                 colorOrnament()
+
+            Case 9
+
+                Chess()
 
         End Select
     End Sub
@@ -117,6 +121,31 @@ Module zachet
         Next
 
     End Sub
+    Sub ons()
+        Console.ForegroundColor = ConsoleColor.Cyan
+        horizon(7, 63, 65)
+        vertically(7, 6, 58)
+        horizon(7, 6, 65)
+        vertically(71, 6, 58)
+    End Sub
+
+    Sub Chess()
+        Console.ForegroundColor = ConsoleColor.White
+        For j = 1 To 9
+            For i = 1 To 8
+                Console.ForegroundColor = ConsoleColor.White
+                Closcube(8 * i, 1 + j * 6, 7, 8)
+            Next
+        Next
+        For j = 1 To 8
+            For i = 1 To 8
+                If (i + j) Mod 2 = 1 Then
+                    Console.ForegroundColor = ConsoleColor.Magenta
+                    Closcube(4 * i * 2, j * 7, 7, 7)
+                End If
+            Next
+        Next
+        ons()
+    End Sub
 
 End Module
-
