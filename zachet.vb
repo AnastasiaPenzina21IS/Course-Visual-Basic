@@ -6,7 +6,7 @@ Module zachet
     Dim x As Integer, y As Integer, x1 As Integer, y1 As Integer
     Sub Main(args As String())
 
-        Console.WriteLine("1 - гор. линия, 2 - верт. линия, 3 - прямоугольник, 4 - пуст.прямоугольник, 5 - сетка, 6-орнамент,7-линии,8-цветной орнамент 9-шахматы")
+        Console.WriteLine("1 - гор. линия, 2 - верт. линия, 3 - прямоугольник, 4 - пуст.прямоугольник, 5 - сетка, 6-орнамент,7-линии,8-цветной орнамент, 9-шахматы ")
         num01 = Console.ReadLine
 
 
@@ -29,23 +29,23 @@ Module zachet
 
             Case 5
 
-                grid()
+                grid(2, 2, 70)
 
             Case 6
 
-                ornament()
+                ornament(5, 4, 6, 6)
 
             Case 7
 
-                lines()
+                lines(10, 5, 40)
 
             Case 8
 
-                colorOrnament()
+                colorOrnament(5, 4, 6, 6)
 
             Case 9
 
-                Chess()
+                Chess(4, 7, 7, 7)
 
         End Select
     End Sub
@@ -85,41 +85,48 @@ Module zachet
 
         Next
     End Sub
-    Sub grid()
+    Sub grid(leftX As Byte, topY As Byte, length As Byte)
 
         For i = 1 To 8
-            horizon(2 + 10, 2 + i * 5, 70)
-            vertically(2 + 10 * i, 2 + 5, 36)
+            horizon(leftX + 10, topY + i * 5, length)
+            vertically(leftX + 10 * i, topY + 5, length - 34)
         Next
 
     End Sub
 
-    Sub ornament()
+    Sub ornament(leftX As Byte, topY As Byte, width As Byte, heigh As Byte)
         For j = 1 To 5
             For i = 1 To 5
-                Closcube(5 + 10 * i, 4 + j * 10, 6, 6)
+                Closcube(leftX + 10 * i, topY + j * 10, width, heigh)
             Next
         Next
     End Sub
 
-    Sub lines()
+    Sub lines(leftX As Byte, topY As Byte, width As Byte)
 
         For i = 1 To 6
-            horizon(10, 5 * i, 40)
+            horizon(leftX, topY * i, width)
         Next
 
     End Sub
 
-    Sub colorOrnament()
+    Sub colorOrnament(leftX As Byte, topY As Byte, width As Byte, heigh As Byte)
         Console.ForegroundColor = ConsoleColor.Black
         Console.BackgroundColor = ConsoleColor.White
 
         For j = 1 To 5
             For i = 1 To 5
-                Closcube(5 + 10 * i, 4 + j * 10, 6, 6)
+                Closcube(leftX + 10 * i, topY + j * 10, width, heigh)
             Next
         Next
 
+    End Sub
+    Sub www(leftX As Byte, topY As Byte, width As Byte, heigh As Byte)
+        For j = 1 To 8
+            For i = 1 To 8
+                Closcube(leftX * i * 2, j * topY, width, heigh)
+            Next
+        Next
     End Sub
     Sub ons()
         Console.ForegroundColor = ConsoleColor.Cyan
@@ -129,19 +136,15 @@ Module zachet
         vertically(71, 6, 58)
     End Sub
 
-    Sub Chess()
+    Sub Chess(leftX As Byte, topY As Byte, width As Byte, heigh As Byte)
         Console.ForegroundColor = ConsoleColor.White
-        For j = 1 To 9
-            For i = 1 To 8
-                Console.ForegroundColor = ConsoleColor.White
-                Closcube(8 * i, 1 + j * 6, 7, 8)
-            Next
-        Next
+
+        www(4, 7, 7, 7)
         For j = 1 To 8
             For i = 1 To 8
                 If (i + j) Mod 2 = 1 Then
                     Console.ForegroundColor = ConsoleColor.Magenta
-                    Closcube(4 * i * 2, j * 7, 7, 7)
+                    Closcube(leftX * i * 2, j * topY, width, heigh)
                 End If
             Next
         Next
