@@ -25,7 +25,7 @@ Module zachet
 
             Case 4
 
-                Empcube(10, 10, 10)
+                Empcube(10, 10, 10, 10)
 
             Case 5
 
@@ -76,12 +76,12 @@ Module zachet
         Next
 
     End Sub
-    Sub Empcube(leftX As Byte, topY As Byte, width As Byte)
+    Sub Empcube(leftX As Byte, topY As Byte, width As Byte, heigh As Byte)
 
         For j = 1 To 2
 
-            horizon(leftX, topY * j, width)
-            vertically(leftX * j, topY, width)
+            horizon(leftX + width - 1, (topY + heigh - 1) * j, leftX + width - 1)
+            vertically((leftX + width - 1) * j, (topY + heigh - 1), leftX + width - 1)
 
         Next
     End Sub
