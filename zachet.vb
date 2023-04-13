@@ -47,6 +47,8 @@ Module zachet
 
                 Chess(4, 7, 7, 7)
 
+            Case 10
+                cubeincube(5, 5, 10, 10)
         End Select
     End Sub
 
@@ -78,12 +80,11 @@ Module zachet
     End Sub
     Sub Empcube(leftX As Byte, topY As Byte, width As Byte, heigh As Byte)
 
-        For j = 1 To 2
+        horizon(leftX + width - 1, (topY + heigh - 1), leftX + width - 1)
+        vertically((leftX + width - 1), (topY + heigh - 1), leftX + width - 1)
+        horizon(leftX + width - 1, (topY + heigh - 1) * 2, leftX + width - 1)
+        vertically((leftX + width - 1) * 2, (topY + heigh - 1), leftX + width - 1)
 
-            horizon(leftX + width - 1, (topY + heigh - 1) * j, leftX + width - 1)
-            vertically((leftX + width - 1) * j, (topY + heigh - 1), leftX + width - 1)
-
-        Next
     End Sub
     Sub grid(leftX As Byte, topY As Byte, length As Byte)
 
@@ -151,4 +152,13 @@ Module zachet
         ons()
     End Sub
 
+    Sub cubeincube(leftX As Byte, topY As Byte, width As Byte, heigh As Byte)
+
+
+
+        Empcube((leftX + 10) * 2, topY * 2, width / 10, heigh*2)
+
+
+
+    End Sub
 End Module
